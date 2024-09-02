@@ -1,2 +1,14 @@
-# bowie-lyrics-analysis
-Sentiment analysis of David Bowie's lyrics and visualization of results in Tableau
+# Sentiment analysis of David Bowie's discography
+This project explores the evolution of sentiment in David Bowie's music over the years, highlighting how his albums and songs have changed across time. The analysis focuses on identifying the most frequently used words in his lyrics, categorizing albums by their overall sentiment (positive, negative, or neutral), and pinpointing the most sentimentally charged songs within each album—whether they are the most positive, negative, or neutral. 
+## Data Scraping
+The data for this project was collected using Python, Selenium, and the LyricsGenius API to scrape song lyrics and album information from Genius.com. Selenium was used to scrape the song names from albums, and LyricsGenius was then employed to retrieve the lyrics for those songs. The scraped data was saved in JSON format, ready for further cleaning and preprocessing.
+## Data Cleaning and Preprocessing
+After scraping, the data was converted from JSON format to a pandas DataFrame for further processing. Using regular expressions, the text lyrics were normalized, and remixes, mixes, and other special versions of songs were removed to avoid duplicating the original lyrics and ensure the dataset remained clean. The NLTK library was then utilized to remove stopwords from the lyrics, with additional custom stopwords added to avoid skewing the analysis. The lyrics were tokenized using a regex tokenizer, and the cleaned data was saved in this format. Additionally, a separate dataset was created where each word was stored in a separate row to facilitate detailed visualization in Tableau.
+## Sentiment Analysis
+For sentiment analysis, the SentimentIntensityAnalyzer from the NLTK library was used to evaluate the lyrics. This tool provided a dictionary containing values for negativity, positivity, neutrality, and an overall compound score. The compound score ranges from -1 to 1, where -1 indicates very negative sentiment, 1 indicates very positive sentiment, and 0 represents neutrality. The other sentiment values range from 0 to 1, with 0 representing weak sentiment and 1 indicating strong sentiment. These sentiment scores were then added to the pandas dataset and used for further visualization.
+## Visualizing Data
+Feel free to explore the [dashboards](https://public.tableau.com/views/DavidBowieSentimentAnalysis/GeneralDashboard?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) yourself!  
+Tableau was used to visualize the data, resulting in two dashboards. The first dashboard provides a general analysis of David Bowie's work, offering insights across all albums and years.
+![image](https://github.com/user-attachments/assets/08997cd1-54b9-401f-9339-2e01febefb33)
+The second dashboard allows for more detailed exploration, enabling users to filter visuals by album names. The information displayed dynamically updates based on the selected albums.
+![image](https://github.com/user-attachments/assets/e4da4f51-db45-41ed-a996-1110548f9bef)
